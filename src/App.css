@@ -1,0 +1,160 @@
+@font-face {
+  font-family: 'Mulish';
+  font-display: swap;
+  src: url('/public/fonts/Mulish-Regular.woff') format('woff'),
+    url('/public/fonts/Mulish-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  font-display: swap;
+  src: url('/public/fonts/Mulish-Semibold.woff') format('woff'),
+    url('/public/fonts/Mulish-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  font-display: swap;
+  src: url('/public/fonts/Mulish-Bold.woff') format('woff'),
+    url('/public/fonts/Mulish-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  --main-color-text: #252733;
+  --secondary-color-text: #9fa2b4;
+  --main-button-color: #2f80ed;
+  --secondary-button-color: #eb5757;
+  --additional-button-color: #f2c94c;
+  --background-color: #f7f8fc;
+  --dark-background-color: #363740;
+  --main-font: 'Mulish';
+  --main-font-size: 14px;
+  --main-line-height: calc(20 / 14);
+}
+
+body {
+  min-width: 900px;
+  font-family: var(--main-font), sans-serif;
+  font-size: var(--main-font-size);
+  line-height: var(--main-line-height);
+  color: var(--main-color-text);
+  background: var(--background-color);
+  transition: 0.3s;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 19px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+main {
+  margin-left: 255px;
+  padding: 30px;
+}
+
+.MuiSvgIcon-root {
+  color: #bdbdbd;
+}
+
+.error {
+  margin: -20px 12px 10px;
+  color: #ff3960;
+  font-weight: 600;
+}
+
+body.dark {
+  background: var(--main-color-text);
+  color: var(--background-color);
+}
+
+body.dark .theme {
+  background: var(--dark-background-color);
+}
+
+body.dark text[text-anchor='start'] {
+  fill: var(--background-color) !important;
+}
+
+body.dark
+  div[style='background: white; color: inherit; font-size: inherit; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 2px; padding: 5px 9px;'] {
+  background: var(--main-color-text) !important;
+}
+
+body.dark .MuiTableCell-root,
+body.dark .MuiToolbar-root,
+body.dark .MuiButtonBase-root.Mui-active,
+body.dark .MuiInputLabel-root.Mui-focused,
+body.dark .MuiInputBase-root.Mui-focused,
+body.dark .MuiInputBase-root.Mui-focused svg {
+  color: #fff;
+}
+
+body.dark header svg.active,
+body.dark .MuiButtonBase-root.Mui-active > svg,
+body.dark .MuiSelect-icon {
+  fill: #fff;
+}
+
+body.dark header > div > svg:first-of-type {
+  fill: #4f4f4f;
+}
+
+body.dark text[text-anchor='middle'],
+body.dark text[text-anchor='end'] {
+  fill: #fff !important;
+}
+
+body.dark .MuiTableContainer-root,
+body.dark .MuiInputLabel-root,
+body.dark .MuiFormControl-root .MuiInputBase-root {
+  background: inherit;
+  color: inherit;
+}
+
+body.dark .Mui-disabled {
+  -webkit-text-fill-color: inherit;
+}
+
+body.dark .MuiFormControl-root .MuiOutlinedInput-notchedOutline {
+  border-color: inherit;
+}
+
+body.dark .MuiTableRow-root.complete .date {
+  color: #a4c5c5;
+}
+
+body.dark .complete {
+  background: #50936c;
+}
+
+body.dark .gridItem {
+  box-shadow: 0 0 10px rgb(4 4 4 / 60%);
+}
+
+@media (max-width: 1280px) {
+  main {
+    margin-left: 88px;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2f015936.css",
+    "main.js": "/static/js/main.320e3229.js",
+    "static/media/Mulish-Semibold.woff": "/static/media/Mulish-Semibold.746273d27b85216a8ee3.woff",
+    "static/media/Mulish-Regular.woff": "/static/media/Mulish-Regular.35dceb50e3a2c8f79b7a.woff",
+    "static/media/Mulish-Bold.woff": "/static/media/Mulish-Bold.b67c700194e6ec568cbc.woff",
+    "static/media/Mulish-Semibold.woff2": "/static/media/Mulish-Semibold.48ecd6df4363312f7643.woff2",
+    "static/media/Mulish-Regular.woff2": "/static/media/Mulish-Regular.400ab738faf0915d4b76.woff2",
+    "static/media/Mulish-Bold.woff2": "/static/media/Mulish-Bold.a66ba5fd13c397fe24d7.woff2",
+    "index.html": "/index.html",
+    "main.2f015936.css.map": "/static/css/main.2f015936.css.map",
+    "main.320e3229.js.map": "/static/js/main.320e3229.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2f015936.css",
+    "static/js/main.320e3229.js"
+  ]
+}
