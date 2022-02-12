@@ -13,16 +13,20 @@ interface TicketTableBodyProps {
   filteredTickets: Row[];
 }
 
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+function descendingComparator(a: Row, b: Row, orderBy: keyof Row) {
   if (b[orderBy] < a[orderBy]) return -1;
   if (b[orderBy] > a[orderBy]) return 1;
+
+  if (b.timestamp < a.timestamp) return -1;
+  if (b.timestamp > a.timestamp) return 1;
+
   return 0;
 }
 
-function getComparator<Key extends keyof Row>(order: Order, orderBy: Key) {
+function getComparator(order: Order, orderBy: keyof Row) {
   return order === 'desc'
-    ? (a: Row, b: Row) => descendingComparator<Row>(a, b, orderBy)
-    : (a: Row, b: Row) => -descendingComparator<Row>(a, b, orderBy);
+    ? (a: Row, b: Row) => descendingComparator(a, b, orderBy)
+    : (a: Row, b: Row) => -descendingComparator(a, b, orderBy);
 }
 
 function TicketsTableBody({

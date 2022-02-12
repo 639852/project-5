@@ -62,7 +62,16 @@ const ticketSlice = createSlice({
       state.tickets = state.tickets.filter((el) => el.id !== action.payload.id);
       deleteDoc(doc(database, 'tickets', `${action.payload.id}`));
 
-      toast.success(`Ticket "${action.payload.details.title}" deleted!`);
+      if (localStorage.getItem('theme') === 'dark') {
+        toast.success(`Ticket "${action.payload.details.title}" deleted!`, {
+          style: {
+            background: '#363740',
+            color: '#fff',
+          },
+        });
+      } else {
+        toast.success(`Ticket "${action.payload.details.title}" deleted!`);
+      }
     },
     editTicket(state: { tickets: Row[] }, action) {
       const index = state.tickets.findIndex(
@@ -76,7 +85,16 @@ const ticketSlice = createSlice({
       state.tickets[index].priority = action.payload.priority;
       state.tickets[index].timestamp = action.payload.timestamp;
 
-      toast.success('Saved successfully');
+      if (localStorage.getItem('theme') === 'dark') {
+        toast.success('Saved successfully', {
+          style: {
+            background: '#363740',
+            color: '#fff',
+          },
+        });
+      } else {
+        toast.success('Saved successfully');
+      }
     },
     setDelete(state: { tickets: Row[] }, action) {
       const index = state.tickets.findIndex(
@@ -97,7 +115,16 @@ const ticketSlice = createSlice({
         state.tickets[index]
       );
 
-      toast.success('Saved successfully');
+      if (localStorage.getItem('theme') === 'dark') {
+        toast.success('Saved successfully', {
+          style: {
+            background: '#363740',
+            color: '#fff',
+          },
+        });
+      } else {
+        toast.success('Saved successfully');
+      }
     },
   },
   extraReducers: (builder) => {
@@ -122,7 +149,16 @@ const ticketSlice = createSlice({
       }
     );
     builder.addCase(getTickets.rejected, () => {
-      toast.error('Failed to load tickets. Try again later...');
+      if (localStorage.getItem('theme') === 'dark') {
+        toast.error('Failed to load tickets. Try again later...', {
+          style: {
+            background: '#363740',
+            color: '#fff',
+          },
+        });
+      } else {
+        toast.error('Failed to load tickets. Try again later...');
+      }
     });
   },
 });

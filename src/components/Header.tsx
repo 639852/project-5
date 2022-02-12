@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import { InputAdornment, TextField } from '@mui/material';
 import { Brightness4, Brightness5, Search } from '@mui/icons-material';
-import { headerStyles, themeStyles } from '../style';
 import { RootState } from '../store';
-import Profile from './Profile';
 import { changeSearchValue } from '../store/slices/utilsSlice';
+import { headerStyles, themeStyles } from '../style';
+import Profile from './Profile';
 
 interface headerProps {
   title: string;
@@ -17,7 +18,7 @@ function Header({ title, search }: headerProps) {
   const dispatch = useDispatch();
 
   const { name, avatar } = useSelector((state: RootState) => state.user);
-  const { headerSearchValue } = useSelector((state: RootState) => state.utils);
+  const [headerSearchValue, setSearchValue] = useState('');
 
   function changeTheme(element: SVGSVGElement) {
     if (!element.classList.contains('active')) {
@@ -52,12 +53,37 @@ function Header({ title, search }: headerProps) {
     }
   }
 
+  type changeInput = ChangeEvent<HTMLInputElement>;
+
+  // eslint-disable-next-line no-unused-vars
+  function debounce(fn: (e: changeInput) => void, wait: number) {
+    // eslint-disable-next-line no-undef
+    let timeout: NodeJS.Timeout;
+
+    return function func(this: () => void, ...args: [e: changeInput]) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        clearTimeout(timeout);
+        fn.apply(this, args);
+      }, wait);
+    };
+  }
+
+  function handleChange(e: changeInput) {
+    setSearchValue(e.target.value);
+  }
+
+  const changeValue = debounce(handleChange, 400);
+
+  useEffect(() => {
+    dispatch(changeSearchValue({ headerSearchValue }));
+  }, [headerSearchValue]);
+
   return (
     <header css={headerStyles}>
       <h1>{title}</h1>
       {search && (
         <TextField
-          value={headerSearchValue}
           type="search"
           label="Search tickets"
           fullWidth
@@ -73,9 +99,7 @@ function Header({ title, search }: headerProps) {
             maxWidth: 500,
             margin: '0 32px',
           }}
-          onChange={(e) =>
-            dispatch(changeSearchValue({ headerSearchValue: e.target.value }))
-          }
+          onChange={changeValue}
         />
       )}
       <div css={themeStyles}>

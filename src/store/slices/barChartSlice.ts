@@ -33,7 +33,16 @@ const barChartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getDataBar.pending, () => {
-      toast.loading('Loading...');
+      if (localStorage.getItem('theme') === 'dark') {
+        toast.loading('Loading...', {
+          style: {
+            background: '#363740',
+            color: '#fff',
+          },
+        });
+      } else {
+        toast.loading('Loading...');
+      }
     });
     builder.addCase(
       getDataBar.fulfilled,
@@ -44,7 +53,16 @@ const barChartSlice = createSlice({
       }
     );
     builder.addCase(getDataBar.rejected, () => {
-      toast.error('Failed to load bar chart. Try again later...');
+      if (localStorage.getItem('theme') === 'dark') {
+        toast.error('Failed to load bar chart. Try again later...', {
+          style: {
+            background: '#363740',
+            color: '#fff',
+          },
+        });
+      } else {
+        toast.error('Failed to load bar chart. Try again later...');
+      }
     });
   },
 });
