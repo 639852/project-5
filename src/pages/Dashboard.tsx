@@ -47,7 +47,7 @@ function Dashboard() {
     },
     {
       title: 'Total Uncompleted',
-      counter: tickets.length,
+      counter: tickets.filter((el: Row) => !el.isComplete).length,
       after: `${
         Math.round(
           (tickets.filter((el: Row) => !el.isComplete).length / allTickets) *
@@ -72,12 +72,13 @@ function Dashboard() {
     },
     {
       title: 'Uncompleted',
-      counter: tickets.filter((el: Row) => el.name === name).length,
+      counter: tickets.filter((el: Row) => el.name === name && !el.isComplete)
+        .length,
       after: `${
         Math.round(
           (tickets.filter((el: Row) => el.name === name && !el.isComplete)
             .length /
-            allTickets) *
+            tickets.filter((el: Row) => el.name === name).length) *
             100
         ) || '0'
       }%`,
@@ -87,6 +88,8 @@ function Dashboard() {
   useEffect(() => {
     const userString = localStorage.getItem('user') || '{}';
     const user = JSON.parse(userString);
+
+    document.title = 'Dashboard';
 
     if (userString !== '{}') {
       dispatch(setUser({ ...user }));

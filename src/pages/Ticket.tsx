@@ -34,6 +34,8 @@ function Ticket() {
     const userString = localStorage.getItem('user') || '{}';
     const user = JSON.parse(userString);
 
+    document.title = 'Ticket';
+
     if (userString !== '{}') {
       dispatch(setUser({ ...user }));
     } else {

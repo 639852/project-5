@@ -24,6 +24,8 @@ function Tickets() {
     const userString = localStorage.getItem('user') || '{}';
     const user = JSON.parse(userString);
 
+    document.title = 'Tickets';
+
     if (userString !== '{}') {
       dispatch(setUser({ ...user }));
       dispatch(changeCurrentPage({ currentPage: 'Tickets' }));

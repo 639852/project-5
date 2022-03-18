@@ -1,14 +1,23 @@
 /** @jsxImportSource @emotion/react */
-
-import { ResponsiveBar } from '@nivo/bar';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { ResponsiveBar } from '@nivo/bar';
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { RootState } from '../store';
 import { barChartStyles } from '../style';
 
 function BarChart() {
-  const date = new Date().toDateString().slice(4);
-  const time = new Date().toTimeString().slice(0, 5);
+  const database = getFirestore();
+  const [date, setDate] = useState();
+  const [time, setTime] = useState();
   const { dataBar } = useSelector((state: RootState) => state.barChart);
+
+  getDoc(doc(database, 'lastUpdate', 'fullDate')).then((data) => {
+    const fullDate = data.data();
+
+    setDate(fullDate?.date);
+    setTime(fullDate?.time);
+  });
 
   return (
     <div css={barChartStyles} className="theme">

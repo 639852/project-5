@@ -6,6 +6,7 @@ import { Button } from '@mui/material';
 import { doc, getFirestore, setDoc } from 'firebase/firestore';
 import { editTicket, removeTicket, Row } from '../store/slices/ticketSlice';
 import { RootState } from '../store';
+import { getDataBar } from '../store/slices/barChartSlice';
 
 interface FormButtonsProps {
   completeTicket: () => void;
@@ -29,6 +30,7 @@ function FormButtons({
   const { id: ticketId } = useParams();
   const [numberOfErrors, setNumber] = useState(0);
   const [headerTitle, setTitle] = useState('');
+  const { dataBar } = useSelector((state: RootState) => state.barChart);
   const database = getFirestore();
 
   const {
@@ -88,6 +90,8 @@ function FormButtons({
 
   useEffect(() => {
     setTitle(document.querySelector('header > h1')?.innerHTML || '');
+
+    if (dataBar.length <= 1 && tickets.length > 0) dispatch(getDataBar());
 
     toggleButtons();
   }, [tickets]);

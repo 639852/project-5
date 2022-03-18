@@ -24,7 +24,7 @@ export const getDataBar = createAsyncThunk(
 const barChartSlice = createSlice({
   name: 'barChart',
   initialState: {
-    dataBar: [],
+    dataBar: [{ title: '', High: 0, Normal: 0, Low: 0 }],
   },
   reducers: {
     setDataBar(state, action) {
